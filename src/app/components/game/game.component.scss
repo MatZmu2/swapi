@@ -1,0 +1,13 @@
+.card-grid {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 15px;
+  justify-content: center;
+}
+
+@media only screen and (width <= 860px) {
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

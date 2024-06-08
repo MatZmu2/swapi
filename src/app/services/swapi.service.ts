@@ -1,22 +1,29 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+import { ApiResponse } from '../models/api-response.interface';
+import { Person, Starship } from '../models/resource.model';
+import { BASE_URL } from '../configs/base-url.injection-token';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SwapiService {
-  private baseUrl = 'https://www.swapi.tech/api';
+  constructor(
+    @Inject(BASE_URL) private baseUrl: string,
+    private http: HttpClient,
+  ) {}
 
-  constructor(private http: HttpClient) {}
-
-  getRandomPerson(): Observable<any> {
-    const id = Math.floor(Math.random() * 83) + 1; // SWAPI has 83 people
-    return this.http.get(`${this.baseUrl}/people/${id}`);
+  public getPeople(page = 1): Observable<ApiResponse<Person>> {
+    return this.http.get<ApiResponse<Person>>(
+      `${this.baseUrl}/people/?page=${page}`,
+    );
   }
 
-  getRandomStarship(): Observable<any> {
-    const id = Math.floor(Math.random() * 36) + 1; // SWAPI has 36 starships
-    return this.http.get(`${this.baseUrl}/starships/${id}`);
+  public getStarships(page = 1): Observable<ApiResponse<Starship>> {
+    return this.http.get<ApiResponse<Starship>>(
+      `${this.baseUrl}/starships/?page=${page}`,
+    );
   }
 }

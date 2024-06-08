@@ -1,1 +1,27 @@
-<p>card works!</p>
+<div class="card" data-cy="game-card">
+  <div [ngClass]="{ 'flipped': isFlipped }">
+    <mat-card class="front" [ngClass]="{ 'winner': winner === detailedGameResource }">
+      <mat-card-header class="card__header">
+      </mat-card-header>
+      <mat-card-content *ngIf="detailedGameResource"
+        >{{ detailedGameResource.name }}
+        <p data-cy="detail-attribute">
+          {{
+            (selectedResource === 'people' ? 'Mass' : 'Passengers') +
+              ': ' +
+              detailedGameResource.detailAttribute
+          }}
+        </p></mat-card-content
+      >
+    </mat-card>
+    <img
+      class="card__image back"
+      height="200"
+      width="200"
+      priority
+    />
+  </div>
+</div>
+
+<ng-template #starship>
+</ng-template>

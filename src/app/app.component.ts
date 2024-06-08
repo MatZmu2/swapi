@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { GameComponent } from './components/game/game.component';
+import { NgClass, NgForOf, NgStyle } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [
+    RouterModule,
+    NgForOf,
+    NgClass,
+    NgStyle,
+    GameComponent,
+  ],
+  selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'swapi-game';
-}
+export class AppComponent { }

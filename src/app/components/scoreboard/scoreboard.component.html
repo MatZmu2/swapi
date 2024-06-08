@@ -1,1 +1,41 @@
-<p>scoreboard works!</p>
+<div class="controls-container styled">
+  <div class="score-display">
+      <div class="player-score-container first-player">
+          <p class="player-label">Player A</p>
+          <div class="player-score" data-cy="first-player-score">{{ gameScore.playerOneScore }}</div>
+      </div>
+      <div class="versus">vs</div>
+      <div class="player-score-container second-player">
+          <p class="player-label">Player B</p>
+          <div class="player-score" data-cy="second-player-score">{{ gameScore.playerTwoScore }}</div>
+      </div>
+  </div>
+
+  <div class="control-buttons">
+      <button
+          class="action-button"
+          mat-stroked-button
+          color="warn"
+          [disabled]="!isPlaying"
+          (click)="playAgain.emit()"
+          data-cy="restart-game-btn"
+      >
+          Play Again
+      </button>
+      <div class="toggle-group" data-cy="resource-toggle">
+          <input type="radio" id="people" name="detailedGameResource" value="people" [(ngModel)]="gameMode" (ngModelChange)="gameModeChanged.emit(gameMode)" class="toggle-button" data-cy="people-option">
+          <label for="people">People</label>
+          <input type="radio" id="starships" name="detailedGameResource" value="starships" [(ngModel)]="gameMode" (ngModelChange)="gameModeChanged.emit(gameMode)" class="toggle-button" data-cy="starships-option">
+          <label for="starships">Starships</label>
+      </div>
+      <button
+          class="action-button"
+          mat-stroked-button
+          color="warn"
+          (click)="resetScore.emit()"
+          data-cy="clear-score-btn"
+      >
+          Reset Score
+      </button>
+  </div>
+</div>

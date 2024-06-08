@@ -1,1 +1,21 @@
-<p>game works!</p>
+<ng-container>
+  <app-scoreboard
+    [gameScore]="gameScore"
+    (gameModeChanged)="selectedMode = $event"
+    (resetScore)="resetScore()"
+    (playAgain)="resetSelectedResources()"
+    [isPlaying]="!!playerOneResource || !!playerTwoResource"
+  ></app-scoreboard>
+  <div class="card-grid">
+    <app-card
+      *ngFor="let resource of detailedGameResource[selectedMode]"
+      (click)="selectResource(resource)"
+      [detailedGameResource]="resource"
+      [winner]="winner"
+      [selectedResource]="selectedMode"
+      [isFlipped]="
+        resource === playerOneResource || resource === playerTwoResource
+      "
+    ></app-card>
+  </div>
+</ng-container>
